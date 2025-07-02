@@ -64,4 +64,4 @@ This project aims to cover (but not limited to):
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/design-patterns-java.git
+   git clone https://github.com/asheeshsingh1/design-pattern.git
