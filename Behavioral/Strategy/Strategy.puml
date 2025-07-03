@@ -1,4 +1,6 @@
-@startuml
+@startuml Strategy
+title Strategy Design Pattern - Vehicles
+
 ' Interface
 interface DriveStrategy {
     +drive()

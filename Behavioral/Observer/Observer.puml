@@ -1,4 +1,5 @@
-@startuml ObserverPatternWithMain
+@startuml Observer
+title Observer Design Pattern - NotifyMe
 
 ' Interfaces
 interface NotificationAlertObserver {

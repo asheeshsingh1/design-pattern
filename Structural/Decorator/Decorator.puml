@@ -1,4 +1,5 @@
 @startuml Decorator
+title Decorator Design Pattern - Pizza
 
 ' Abstract base classes
 abstract class BasePizza {

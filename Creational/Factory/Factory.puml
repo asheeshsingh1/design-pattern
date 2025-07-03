@@ -1,0 +1,33 @@
+@startuml Factory
+title Factory Design Pattern - Shapes
+
+interface Shape {
+    +draw(): void
+}
+
+class Square implements Shape {
+    +draw(): void
+}
+
+class Triangle implements Shape {
+    +draw(): void
+}
+
+class ShapeFactory {
+    +getShape(shape: String): Shape
+}
+
+class Main {
+    +main(args: String[]): void
+}
+
+ShapeFactory --> Shape : creates
+ShapeFactory --> Square : creates
+ShapeFactory --> Triangle : creates
+Square ..|> Shape
+Triangle ..|> Shape
+Main --> ShapeFactory : uses
+Main --> Shape : calls getShape("SQUARE")
+Main --> Shape : calls getShape("TRIANGLE")
+
+@enduml
