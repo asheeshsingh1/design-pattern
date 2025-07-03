@@ -1,0 +1,58 @@
+@startuml Decorator
+
+' Abstract base classes
+abstract class BasePizza {
+    +cost(): int
+}
+
+abstract class BaseToppings extends BasePizza
+
+' Concrete pizza implementations
+class FarmHousePizza extends BasePizza {
+    +cost(): int
+}
+
+class CapsicumPizza extends BasePizza {
+    +cost(): int
+}
+
+class VegDelightPizza extends BasePizza {
+    +cost(): int
+}
+
+' Toppings (Decorators)
+class CheeseToppings extends BaseToppings {
+    -basePizza: BasePizza
+    +CheeseToppings(BasePizza)
+    +cost(): int
+}
+
+class VeggieToppings extends BaseToppings {
+    -basePizza: BasePizza
+    +VeggieToppings(BasePizza)
+    +cost(): int
+}
+
+' Client
+class Main
+
+' Inheritance relationships
+BasePizza <|-- BaseToppings
+BasePizza <|-- FarmHousePizza
+BasePizza <|-- CapsicumPizza
+BasePizza <|-- VegDelightPizza
+BaseToppings <|-- CheeseToppings
+BaseToppings <|-- VeggieToppings
+
+' Composition (Decorator)
+CheeseToppings --> BasePizza : wraps
+VeggieToppings --> BasePizza : wraps
+
+' Main usage
+Main ..> CheeseToppings
+Main ..> VeggieToppings
+Main ..> FarmHousePizza
+Main ..> CapsicumPizza
+Main ..> VegDelightPizza
+
+@enduml

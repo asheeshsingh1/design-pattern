@@ -1,0 +1,47 @@
+@startuml
+' Interface
+interface DriveStrategy {
+    +drive()
+}
+
+' Strategy Implementations
+class NormalDrive implements DriveStrategy {
+    +drive()
+}
+
+class SportsDrive implements DriveStrategy {
+    +drive()
+}
+
+' Context Class
+class Vehicle {
+    -driveStrategy: DriveStrategy
+    +Vehicle(driveStrategy: DriveStrategy)
+    +drive()
+}
+
+' Concrete Vehicle Types
+class NormalCar extends Vehicle
+class SportsCar extends Vehicle
+class GoodsCar extends Vehicle
+
+' Main Class
+class Main {
+    +main(args: String[])
+}
+
+' Relationships
+DriveStrategy <|.. NormalDrive
+DriveStrategy <|.. SportsDrive
+
+Vehicle o--> DriveStrategy
+
+Vehicle <|-- NormalCar
+Vehicle <|-- SportsCar
+Vehicle <|-- GoodsCar
+
+Main ..> NormalCar
+Main ..> SportsCar
+Main ..> GoodsCar
+
+@enduml

@@ -1,0 +1,64 @@
+@startuml ObserverPatternWithMain
+
+' Interfaces
+interface NotificationAlertObserver {
+    +update()
+}
+
+interface StockObservable {
+    +add(observer: NotificationAlertObserver)
+    +remove(observer: NotificationAlertObserver)
+    +notifyUsers()
+    +setStockCount(newStockCount: int)
+    +getStockCount(): int
+}
+
+' Concrete Observer - Email
+class EmailNotificationObserver {
+    -emailID: String
+    -observable: StockObservable
+    +EmailNotificationObserver(emailID: String, observable: StockObservable)
+    +update()
+    +sendEmail(emailID: String)
+}
+
+' Concrete Observer - SMS
+class MessageNotificationObserver {
+    -phoneNumber: String
+    -observable: StockObservable
+    +MessageNotificationObserver(phoneNumber: String, observable: StockObservable)
+    +update()
+    +sendMessage(phoneNumber: String)
+}
+
+' Observable Implementation
+class IphoneObservableImpl {
+    -iphoneWaitingList: List<NotificationAlertObserver>
+    -stockCount: int
+    +add(observer: NotificationAlertObserver)
+    +remove(observer: NotificationAlertObserver)
+    +notifyUsers()
+    +setStockCount(newStockCount: int)
+    +getStockCount(): int
+}
+
+' Main driver class
+class Main {
+    +main(args: String[])
+}
+
+' Inheritance Relationships
+NotificationAlertObserver <|.. EmailNotificationObserver
+NotificationAlertObserver <|.. MessageNotificationObserver
+
+StockObservable <|.. IphoneObservableImpl
+
+' Associations
+EmailNotificationObserver --> StockObservable
+MessageNotificationObserver --> StockObservable
+
+Main --> IphoneObservableImpl
+Main --> EmailNotificationObserver
+Main --> MessageNotificationObserver
+
+@enduml
