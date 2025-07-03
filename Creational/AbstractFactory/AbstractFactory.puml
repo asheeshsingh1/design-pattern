@@ -1,0 +1,62 @@
+@startuml Abstract Factory
+title Abstract Factory Pattern - Vehicle
+
+interface Vehicle {
+    +name(): void
+}
+
+interface VehicleFactory {
+    +getVehicle(vehicleName: String): Vehicle
+}
+
+class Swift implements Vehicle {
+    +name(): void
+}
+
+class Aura implements Vehicle {
+    +name(): void
+}
+
+class BMW implements Vehicle {
+    +name(): void
+}
+
+class Mercedes implements Vehicle {
+    +name(): void
+}
+
+class OrdinaryFactory implements VehicleFactory {
+    +getVehicle(vehicleName: String): Vehicle
+}
+
+class LuxuryFactory implements VehicleFactory {
+    +getVehicle(vehicleName: String): Vehicle
+}
+
+class FactoryProducer {
+    +getFactory(type: String): VehicleFactory
+}
+
+class Main {
+    +main(args: String[]): void
+}
+
+' Relationships
+Vehicle <|.. Swift
+Vehicle <|.. Aura
+Vehicle <|.. BMW
+Vehicle <|.. Mercedes
+
+VehicleFactory <|.. OrdinaryFactory
+VehicleFactory <|.. LuxuryFactory
+
+FactoryProducer --> VehicleFactory : returns
+OrdinaryFactory --> Swift : creates
+OrdinaryFactory --> Aura : creates
+LuxuryFactory --> BMW : creates
+LuxuryFactory --> Mercedes : creates
+Main --> FactoryProducer : uses
+Main --> VehicleFactory : uses
+Main --> Vehicle : uses
+
+@enduml
