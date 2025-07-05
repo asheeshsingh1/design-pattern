@@ -1,0 +1,51 @@
+@startuml Proxy
+
+title Proxy Design Pattern - Employee
+' Interfaces
+interface EmployeeDao {
+    +createEmployee(client: String, employee: Employee)
+    +readEmployee(client: String, employeeID: int): Employee
+    +updateEmployee(client: String, employee: Employee)
+    +deleteEmployee(client: String, employeeID: int)
+}
+
+' Concrete Implementation
+class EmployeeDaoImpl {
+    +createEmployee(client: String, employee: Employee)
+    +readEmployee(client: String, employeeID: int): Employee
+    +updateEmployee(client: String, employee: Employee)
+    +deleteEmployee(client: String, employeeID: int)
+}
+
+' Proxy Implementation
+class EmployeeDaoProxy {
+    -employeeDaoObj: EmployeeDao
+    +EmployeeDaoProxy()
+    +createEmployee(client: String, employee: Employee)
+    +readEmployee(client: String, employeeID: int): Employee
+    +updateEmployee(client: String, employee: Employee)
+    +deleteEmployee(client: String, employeeID: int)
+}
+
+' POJO class
+class Employee {
+    -name: String = "John Doe"
+    -age: int = 30
+}
+
+' Main driver class
+class Main {
+    +main(args: String[])
+}
+
+' Relationships
+EmployeeDao <|.. EmployeeDaoImpl
+EmployeeDao <|.. EmployeeDaoProxy
+
+EmployeeDaoProxy --> EmployeeDaoImpl
+EmployeeDao --> Employee
+
+Main --> EmployeeDaoProxy
+Main --> Employee
+
+@enduml
