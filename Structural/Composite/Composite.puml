@@ -1,0 +1,33 @@
+@startuml CompositePattern
+
+title Composite Design Pattern - File System
+
+interface FileSystem {
+    +ls() : void
+}
+
+class File {
+    -String fileName
+    +File(name: String)
+    +ls() : void
+}
+
+class Directory {
+    -String directoryName
+    -List<FileSystem> fileSystemList
+    +Directory(name: String)
+    +add(fileSystem: FileSystem) : void
+    +ls() : void
+}
+
+class Main {
+    +main(String[] args) : void
+}
+
+FileSystem <|.. File
+FileSystem <|.. Directory
+
+Main --> Directory
+Directory --> FileSystem : uses (add / ls)
+
+@enduml
