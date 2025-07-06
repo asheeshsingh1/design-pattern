@@ -1,0 +1,48 @@
+@startuml NullObjectPattern
+title Null Object Design Pattern - Vehicle
+
+interface Vehicle {
+    +String getName()
+    +int seatingCapacity()
+    +int fuelTankCapacity()
+}
+
+class Car {
+    -String name = "Car"
+    +getName() : String
+    +seatingCapacity() : int
+    +fuelTankCapacity() : int
+}
+
+class Bike {
+    -String name = "Bike"
+    +getName() : String
+    +seatingCapacity() : int
+    +fuelTankCapacity() : int
+}
+
+class NullVehicle {
+    -String name = "None"
+    +getName() : String
+    +seatingCapacity() : int
+    +fuelTankCapacity() : int
+    +<<constructor>> NullVehicle()
+}
+
+class VehicleFactory {
+    +getVehicleObject(vehicle: String) : Vehicle
+}
+
+class Main {
+    +main(String[] args) : void
+    -printVehicleDetails(vehicle: Vehicle) : void
+}
+
+Vehicle <|.. Car
+Vehicle <|.. Bike
+Vehicle <|.. NullVehicle
+
+Main --> VehicleFactory
+VehicleFactory --> Vehicle
+
+@enduml
