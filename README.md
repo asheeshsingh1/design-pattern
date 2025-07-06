@@ -29,25 +29,25 @@ Each design pattern is implemented in a **separate folder** located in the root 
 
 This project aims to cover (but not limited to):
 
-### ✅ Creational Patterns
+### ⏳ Creational Patterns
 - Singleton
-- Factory Method
-- Abstract Factory
+- Factory Method ✅
+- Abstract Factory ✅
 - Builder
 - Prototype
 
-### ✅ Structural Patterns
+### ⏳ Structural Patterns
 - Adapter
-- Decorator
+- Decorator ✅
 - Composite
-- Proxy
+- Proxy ✅
 - Facade
 - Flyweight
 - Bridge
 
-### ✅ Behavioral Patterns
-- Observer
-- Strategy
+### ⏳ Behavioral Patterns
+- Observer ✅
+- Strategy ✅
 - Command
 - State
 - Template Method
