@@ -1,0 +1,35 @@
+@startuml AdapterPattern
+
+title Adapter Design Pattern - Weight Machine
+
+interface WeightMachineAdaptee {
+    +getWeightInPounds() : double
+}
+
+interface WeightMachineAdapter {
+    +getWeightInKg() : double
+}
+
+class WeightMachinePound {
+    -int weight
+    +WeightMachinePound(weight: int)
+    +getWeightInPounds() : double
+}
+
+class WeightMachineKg {
+    -WeightMachineAdaptee weightMachineAdaptee
+    +WeightMachineKg(weightMachineAdaptee: WeightMachineAdaptee)
+    +getWeightInKg() : double
+}
+
+class Main {
+    +main(args: String[]) : void
+}
+
+WeightMachineAdaptee <|.. WeightMachinePound
+WeightMachineAdapter <|.. WeightMachineKg
+WeightMachineKg --> WeightMachineAdaptee : adapts
+
+Main --> WeightMachineAdapter : uses
+
+@enduml
