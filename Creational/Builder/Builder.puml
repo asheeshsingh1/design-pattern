@@ -1,0 +1,58 @@
+@startuml BuilderPattern
+
+title Builder Design Pattern - Student Builder
+
+class Student {
+    -int rollNo
+    -String name
+    -String motherName
+    -String fatherName
+    -int age
+    -int standard
+    -List<String> subjects
+    +Student(builder: StudentBuilder)
+    +toString(): String
+}
+
+abstract class StudentBuilder {
+    +setRollNo(rollNo: int): StudentBuilder
+    +setName(name: String): StudentBuilder
+    +setMotherName(name: String): StudentBuilder
+    +setFatherName(name: String): StudentBuilder
+    +setAge(age: int): StudentBuilder
+    +setStandard(std: int): StudentBuilder
+    +setSubjects(): StudentBuilder
+    +build(): Student
+}
+
+class EngineerStudentBuilder {
+    +setSubjects(): StudentBuilder
+}
+
+class MBAStudentBuilder {
+    +setSubjects(): StudentBuilder
+}
+
+class StudentDirector {
+    -StudentBuilder studentBuilder
+    +StudentDirector(studentBuilder: StudentBuilder)
+    +createStudent(): Student
+    -createEngineeringStudent(): Student
+    -createMBAStudent(): Student
+}
+
+class Main {
+    +main(String[]): void
+}
+
+StudentBuilder <|-- EngineerStudentBuilder
+StudentBuilder <|-- MBAStudentBuilder
+
+Student --> StudentBuilder : <<constructed from>>
+
+StudentDirector --> StudentBuilder : uses
+
+Main --> StudentDirector : creates
+Main --> Student : prints
+
+@enduml
