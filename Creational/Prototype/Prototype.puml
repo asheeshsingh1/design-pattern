@@ -1,0 +1,30 @@
+@startuml Prototype
+
+title Prototype Design Pattern - Student Clone
+
+' Interface
+interface Prototype {
+    +clone(): Prototype
+}
+
+' Student class implementing Prototype
+class Student {
+    -name: String
+    -age: int
+    -rollNumber: int
+    +Student()
+    +Student(age: int, rollNumber: int, name: String)
+    +clone(): Prototype
+    +getRollNumber(): int
+}
+
+' Main class
+class Main {
+    +main(args: String[]): void
+}
+
+' Relationships
+Prototype <|.. Student
+Main --> Student
+
+@enduml
