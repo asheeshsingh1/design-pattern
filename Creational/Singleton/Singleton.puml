@@ -1,0 +1,58 @@
+@startuml Singleton
+
+title Singleton Design Pattern - Student
+
+' Interface
+interface Student {
+    +name: String
+}
+
+' Eager Singleton class
+class StudentEager {
+    -name: String
+    -StudentEager()
+    -studentEager: StudentEager
+    +getInstance(): StudentEager
+}
+
+' Lazy Singleton class
+class StudentLazy {
+    -name: String
+    -StudentLazy()
+    -studentLazyObject: StudentLazy
+    +getInstance(): StudentLazy
+}
+
+' Synchronized Singleton class
+class StudentSynchronised {
+    -name: String
+    -StudentSynchronised()
+    -studentSynchronisedObject: StudentSynchronised
+    +getInstance(): StudentSynchronised
+}
+
+' Double Lock Singleton class
+class StudentDoubleLock {
+    -name: String
+    -StudentDoubleLock()
+    -studentDoubleLockObject: StudentDoubleLock
+    +getInstance(): StudentDoubleLock
+}
+
+' Main class
+class Main {
+    +main(args: String[]): void
+}
+
+' Relationships
+Student <|.. StudentEager
+Student <|.. StudentLazy
+Student <|.. StudentSynchronised
+Student <|.. StudentDoubleLock
+
+Main --> StudentEager
+Main --> StudentLazy
+Main --> StudentSynchronised
+Main --> StudentDoubleLock
+
+@enduml
