@@ -1,0 +1,64 @@
+@startuml Bridge
+title Bridge Design Pattern - Breathing Methods
+' Interfaces
+interface BreatheImplementor {
+    +breathingMethod(): void
+}
+
+' Implementations of BreatheImplementor
+class LandBreatheImpl {
+    +breathingMethod(): void
+}
+
+class WaterBreatheImpl {
+    +breathingMethod(): void
+}
+
+class TreeBreatheImpl {
+    +breathingMethod(): void
+}
+
+' Abstract class
+abstract class LivingThings {
+    -breatheImplementor: BreatheImplementor
+    +LivingThings(breatheImplementor: BreatheImplementor)
+    +breathingProcess(): void
+}
+
+' Concrete classes extending LivingThings
+class Human {
+    +Human(breatheImplementor: BreatheImplementor)
+    +breathingProcess(): void
+}
+
+class Fish {
+    +Fish(breatheImplementor: BreatheImplementor)
+    +breathingProcess(): void
+}
+
+class Tree {
+    +Tree(breatheImplementor: BreatheImplementor)
+    +breathingProcess(): void
+}
+
+' Main class
+class Main {
+    +main(args: String[]): void
+}
+
+' Relationships
+BreatheImplementor <|.. LandBreatheImpl
+BreatheImplementor <|.. WaterBreatheImpl
+BreatheImplementor <|.. TreeBreatheImpl
+
+LivingThings --> BreatheImplementor
+
+LivingThings <|-- Human
+LivingThings <|-- Fish
+LivingThings <|-- Tree
+
+Main --> Human
+Main --> Fish
+Main --> Tree
+
+@enduml
