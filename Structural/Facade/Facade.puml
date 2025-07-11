@@ -1,0 +1,71 @@
+@startuml Facade
+
+title Facade Design Pattern - Order
+' Interfaces
+interface ProductDao {
+    +getProduct(productId: int): Product
+}
+
+interface PaymentDao {
+    +makePayment(): void
+}
+
+interface InvoiceDao {
+    +generateInvoice(): void
+}
+
+interface SendNotificationDao {
+    +sendNotification(): void
+}
+
+' Classes implementing interfaces
+class ProductDaoImpl {
+    +getProduct(productId: int): Product
+}
+
+class PaymentDaoImpl {
+    +makePayment(): void
+}
+
+class InvoiceDaoImpl {
+    +generateInvoice(): void
+}
+
+class SendNotificationDaoImpl {
+    +sendNotification(): void
+}
+
+' Product class
+class Product {
+    -productName: String = "Macbook"
+    +getProductName(): String
+}
+
+' Facade class
+class OrderFacade {
+    -productDaoImpl: ProductDaoImpl
+    -invoiceDaoImpl: InvoiceDaoImpl
+    -paymentDaoImpl: PaymentDaoImpl
+    -sendNotificationDaoImpl: SendNotificationDaoImpl
+    +createOrder(): void
+}
+
+' Main class
+class Main {
+    +main(args: String[]): void
+}
+
+' Relationships
+ProductDao <|.. ProductDaoImpl
+PaymentDao <|.. PaymentDaoImpl
+InvoiceDao <|.. InvoiceDaoImpl
+SendNotificationDao <|.. SendNotificationDaoImpl
+
+OrderFacade --> ProductDaoImpl
+OrderFacade --> PaymentDaoImpl
+OrderFacade --> InvoiceDaoImpl
+OrderFacade --> SendNotificationDaoImpl
+ProductDaoImpl --> Product
+Main --> OrderFacade
+
+@enduml
