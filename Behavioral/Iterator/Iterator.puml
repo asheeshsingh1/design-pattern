@@ -1,0 +1,49 @@
+@startuml IteratorPattern
+title Iterator Design Pattern - Books and Library
+
+' Interfaces
+interface Aggregate {
+    +createIterator(): Iterator
+}
+
+interface Iterator {
+    +hasNext(): boolean
+    +next(): Object
+}
+
+' Classes
+class Book {
+    -bookName: String
+    -price: Integer
+    +getBookName(): String
+    +getPrice(): Integer
+}
+
+class BookIterator {
+    -bookList: List<Book>
+    -index: int
+    +hasNext(): boolean
+    +next(): Object
+}
+
+class Library {
+    -bookList: List<Book>
+    +createIterator(): Iterator
+}
+
+class Main {
+    +main(args: String[]): void
+}
+
+' Relationships
+Aggregate <|.. Library
+Iterator <|.. BookIterator
+
+Library --> BookIterator : creates
+BookIterator --> Book : iterates over
+Library --> Book : has list of
+Main --> Library : uses
+Main --> Book : uses
+Main --> Iterator : uses
+
+@enduml

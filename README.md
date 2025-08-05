@@ -52,7 +52,7 @@ This project aims to cover (but not limited to):
 - Command
 - State
 - Template Method
-- Iterator
+- Iterator ✅
 - Mediator
 - Memento
 - Chain of Responsibility
