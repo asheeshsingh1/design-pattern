@@ -55,7 +55,7 @@ This project aims to cover (but not limited to):
 - Iterator ✅
 - Mediator
 - Memento
-- Chain of Responsibility
+- Chain of Responsibility ✅
 - Visitor
 - Interpreter
 
