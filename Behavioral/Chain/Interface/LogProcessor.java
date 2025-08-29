@@ -1,4 +1,4 @@
-package Structural.Chain.Interface;
+package Behavioral.Chain.Interface;
 
 public abstract class LogProcessor{
     public static int INFO = 1;
