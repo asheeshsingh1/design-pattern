@@ -1,0 +1,40 @@
+@startuml Chain of Responsibility
+
+title Chain of Responsibility Design Pattern - Logger
+
+abstract class LogProcessor {
+    + static int INFO
+    + static int DEBUG
+    + static int ERROR
+    - LogProcessor nextLogProcessor
+    + LogProcessor(logProcessor: LogProcessor)
+    + log(logLevel: int, message: String)
+}
+
+class InfoLogProcessor {
+    + InfoLogProcessor(logProcessor: LogProcessor)
+    + log(logLevel: int, message: String)
+}
+
+class DebugLogProcessor {
+    + DebugLogProcessor(logProcessor: LogProcessor)
+    + log(logLevel: int, message: String)
+}
+
+class ErrorLogProcessor {
+    + ErrorLogProcessor(logProcessor: LogProcessor)
+    + log(logLevel: int, message: String)
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+LogProcessor <|-- InfoLogProcessor
+LogProcessor <|-- DebugLogProcessor
+LogProcessor <|-- ErrorLogProcessor
+
+LogProcessor "1" o--> "1" LogProcessor : nextLogProcessor
+Main ..> LogProcessor : uses
+
+@enduml
