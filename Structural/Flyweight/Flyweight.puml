@@ -1,0 +1,38 @@
+@startuml Flyweight
+
+title Flyweight Pattern - Robot Game
+
+interface Robot {
+    + display(x: int, y: int)
+}
+
+class RobotFactory {
+    - static HashMap<String, Robot> robotCache
+    + static createRobot(robotType: String): Robot
+}
+
+class HumanRobot {
+    - type: String
+    - body: String
+    + HumanRobot(type: String, body: String)
+    + display(x: int, y: int)
+}
+
+class DogRobot {
+    - type: String
+    - body: String
+    + DogRobot(type: String, body: String)
+    + display(x: int, y: int)
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+Robot <|.. HumanRobot
+Robot <|.. DogRobot
+RobotFactory ..> Robot : creates
+Main ..> RobotFactory : uses
+Main ..> Robot
+
+@enduml
