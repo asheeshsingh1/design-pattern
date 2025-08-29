@@ -1,6 +1,6 @@
-package Structural.Chain.Classes;
+package Behavioral.Chain.Classes;
 
-import Structural.Chain.Interface.LogProcessor;
+import Behavioral.Chain.Interface.LogProcessor;
 
 public class InfoLogProcessor extends LogProcessor{
 
