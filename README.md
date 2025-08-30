@@ -50,7 +50,7 @@ This project aims to cover (but not limited to):
 - Strategy ✅
 - Null Object ✅
 - Command
-- State
+- State ✅
 - Template Method
 - Iterator ✅
 - Mediator
