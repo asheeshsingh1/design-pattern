@@ -1,0 +1,49 @@
+@startuml Command
+
+title Command Design Pattern - AC Remote
+
+interface Command {
+    +execute()
+}
+
+class AC {
+    -int temperature
+    -boolean status
+    +turnOnAC()
+    +turnOffAC()
+    +setTemprature(int temperature)
+}
+
+class Remote {
+    -Command command
+    +setCommand(Command command)
+    +pressButton()
+}
+
+class TurnOnACCommand {
+    -AC ac
+    +execute()
+}
+
+class TurnOffACCommand {
+    -AC ac
+    +execute()
+}
+
+class Main {
+    +main(String[] args)
+}
+
+' Relationships
+Command <|.. TurnOnACCommand
+Command <|.. TurnOffACCommand
+
+TurnOnACCommand --> AC : has
+TurnOffACCommand --> AC : has
+
+Remote --> Command : has
+
+Main --> Remote : uses
+Main --> AC : uses
+
+@enduml
