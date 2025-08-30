@@ -1,0 +1,42 @@
+@startuml Mediator
+
+title Mediator Pattern - Auction
+
+interface AuctionMediator {
+    +addBidder(Colleague bidder)
+    +placeBid(Colleague bidder, int bidAmount)
+}
+
+interface Colleague {
+    +placeBid(int bidAmount)
+    +receiveBidNotification(int bidAmount)
+    +getName(): String
+}
+
+class Auction implements AuctionMediator {
+    -List<Colleague> colleagues
+    +addBidder(Colleague bidder)
+    +placeBid(Colleague bidder, int bidAmount)
+}
+
+class Bidder implements Colleague {
+    -String name
+    -AuctionMediator auctionMediator
+    +Bidder(AuctionMediator auctionMediator, String name)
+    +placeBid(int bidAmount)
+    +receiveBidNotification(int bidAmount)
+    +getName(): String
+}
+
+class Main {
+    +main(String[] args)
+}
+
+AuctionMediator <|.. Auction
+Colleague <|.. Bidder
+Auction "1" o-- "*" Colleague
+Bidder --> AuctionMediator
+Main ..> Auction
+Main ..> Bidder
+
+@enduml

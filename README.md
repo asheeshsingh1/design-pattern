@@ -53,7 +53,7 @@ This project aims to cover (but not limited to):
 - State ✅
 - Template Method ✅
 - Iterator ✅
-- Mediator
+- Mediator ✅
 - Memento
 - Chain of Responsibility ✅
 - Visitor
