@@ -1,0 +1,39 @@
+@startuml Template
+
+title Template Method Pattern - Payment Flow
+
+package Behavioral.Template.Interface {
+    abstract class PaymentFlow {
+        +sendMoney() : void
+        {abstract} +validatePayment() : void
+        {abstract} +calculateFee() : void
+        {abstract} +debitSender() : void
+        {abstract} +creditReceiver() : void
+    }
+}
+
+package Behavioral.Template.Classes {
+    class PayToFriend {
+        +validatePayment() : void
+        +calculateFee() : void
+        +debitSender() : void
+        +creditReceiver() : void
+    }
+
+    class PayToMerchant {
+        +validatePayment() : void
+        +calculateFee() : void
+        +debitSender() : void
+        +creditReceiver() : void
+    }
+
+    class Main {
+        +main(args : String[]) : void
+    }
+}
+
+PaymentFlow <|-- PayToFriend
+PaymentFlow <|-- PayToMerchant
+Main ..> PaymentFlow
+
+@enduml
