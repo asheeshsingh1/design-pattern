@@ -49,7 +49,7 @@ This project aims to cover (but not limited to):
 - Observer ✅
 - Strategy ✅
 - Null Object ✅
-- Command
+- Command ✅
 - State ✅
 - Template Method
 - Iterator ✅
