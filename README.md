@@ -51,7 +51,7 @@ This project aims to cover (but not limited to):
 - Null Object ✅
 - Command ✅
 - State ✅
-- Template Method
+- Template Method ✅
 - Iterator ✅
 - Mediator
 - Memento
