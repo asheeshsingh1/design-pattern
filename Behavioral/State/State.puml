@@ -1,0 +1,105 @@
+@startuml State
+
+title State Design Pattern - Vending Machine
+
+interface State {
+    + pressInertCashButton(machine: VendingMachine)
+    + clickOnStartProductSelectionButton(machine: VendingMachine)
+    + inertMoney(machine: VendingMachine, money: Money)
+    + selectProduct(machine: VendingMachine, codeNumber: int)
+    + dispenseProduct(machine: VendingMachine, codeNumber: int): Item
+    + returnChange(returnExtraMoney: int): int
+    + getFullRefund(machine: VendingMachine): List<Money>
+    + updateInventory(machine: VendingMachine, item: Item, codeNumber: int)
+}
+
+class IdleState {
+    + IdleState()
+    + IdleState(machine: VendingMachine)
+}
+class HasMoneyState {
+    + HasMoneyState()
+}
+class SelectionState {
+    + SelectionState()
+}
+class DispenseState {
+    + DispenseState(machine: VendingMachine, codeNumber: int)
+}
+
+State <|.. IdleState
+State <|.. HasMoneyState
+State <|.. SelectionState
+State <|.. DispenseState
+
+class VendingMachine {
+    - State vendingMachineState
+    - Inventory inventory
+    - List<Money> moneyList
+    + VendingMachine()
+    + getVendingMachineState(): State
+    + setVendingMachineState(state: State)
+    + getInventory(): Inventory
+    + setInventory(inventory: Inventory)
+    + gettMoneyList(): List<Money>
+    + setMoneyList(moneyList: List<Money>)
+}
+
+class Inventory {
+    - ItemShelf[] inventory
+    + Inventory(itemCount: int)
+    + getItem(codeNumber: int): Item
+    + addItem(item: Item, codeNumber: int)
+    + updateSoldOutItem(codeNumber: int)
+    + initialEmptyInventory()
+}
+
+class ItemShelf {
+    - int code
+    - Item item
+    - boolean soldOut
+    + getCode(): int
+    + setCode(code: int)
+    + getItem(): Item
+    + setItem(item: Item)
+    + isSoldOut(): boolean
+    + setSoldOut(soldOut: boolean)
+}
+
+class Item {
+    - ItemType type
+    - int price
+    + getType(): ItemType
+    + setType(type: ItemType)
+    + getPrice(): int
+    + setPrice(price: int)
+}
+
+enum ItemType {
+    COKE
+    PEPSI
+    SPRITE
+    MIRINDA
+}
+
+enum Money {
+    PENNY
+    NICKEL
+    DIME
+    QUARTER
+    + value: int
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+VendingMachine --> State
+VendingMachine --> Inventory
+VendingMachine --> Money
+Inventory --> ItemShelf
+ItemShelf --> Item
+Item --> ItemType
+VendingMachine ..> Main : used by
+
+@enduml
