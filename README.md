@@ -54,7 +54,7 @@ This project aims to cover (but not limited to):
 - Template Method ✅
 - Iterator ✅
 - Mediator ✅
-- Memento
+- Memento ✅
 - Chain of Responsibility ✅
 - Visitor ✅
 - Interpreter ✅
