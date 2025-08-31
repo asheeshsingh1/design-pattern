@@ -1,0 +1,47 @@
+@startuml Memento
+
+title Memento Pattern - Memento Undo
+
+' Interfaces
+interface Memento {
+    +getHeight(): int
+    +getWidth(): int
+}
+
+' Classes
+class ConfigurationOriginator {
+    -int height
+    -int width
+    +ConfigurationOriginator(int, int)
+    +setHeight(int): void
+    +setWidth(int): void
+    +createMemento(): ConfigurationMemento
+    +restoreMemento(ConfigurationMemento): void
+}
+
+class ConfigurationMemento implements Memento {
+    -int height
+    -int width
+    +ConfigurationMemento(int, int)
+    +getHeight(): int
+    +getWidth(): int
+}
+
+class ConfigurationCareTaker {
+    -List<ConfigurationMemento> history
+    +addMemento(ConfigurationMemento): void
+    +undo(): ConfigurationMemento
+}
+
+class Main {
+    +main(String[]): void
+}
+
+' Relationships
+ConfigurationMemento ..|> Memento
+ConfigurationOriginator --> ConfigurationMemento : creates/restores
+ConfigurationCareTaker --> ConfigurationMemento : stores
+Main --> ConfigurationOriginator
+Main --> ConfigurationCareTaker
+
+@enduml
