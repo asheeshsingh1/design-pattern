@@ -56,7 +56,7 @@ This project aims to cover (but not limited to):
 - Mediator ✅
 - Memento
 - Chain of Responsibility ✅
-- Visitor
+- Visitor ✅
 - Interpreter
 
 ---
