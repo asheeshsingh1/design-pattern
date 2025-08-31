@@ -1,0 +1,43 @@
+@startuml Interpreter
+
+title Interpreter Design Pattern - Arithmetic Multiply
+
+interface AbstractExpression {
+    +interpreter(context: Context): int
+}
+
+class NumberTerminalExpression {
+    -stringValue: String
+    +interpreter(context: Context): int
+}
+
+class MultiplyNonTerminalExpression {
+    -leftExpression: AbstractExpression
+    -rightExpression: AbstractExpression
+    +interpreter(context: Context): int
+}
+
+class Context {
+    -contextMap: Map<String, Integer>
+    +put(key: String, value: int)
+    +get(key: String): int
+}
+
+class Main {
+    +main(args: String[]): void
+}
+
+AbstractExpression <|.. NumberTerminalExpression
+AbstractExpression <|.. MultiplyNonTerminalExpression
+
+MultiplyNonTerminalExpression o-- AbstractExpression : leftExpression
+MultiplyNonTerminalExpression o-- AbstractExpression : rightExpression
+
+NumberTerminalExpression --> Context : uses
+MultiplyNonTerminalExpression --> Context : uses
+
+Main --> Context
+Main --> MultiplyNonTerminalExpression
+Main --> NumberTerminalExpression
+
+@enduml

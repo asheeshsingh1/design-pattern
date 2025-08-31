@@ -57,7 +57,7 @@ This project aims to cover (but not limited to):
 - Memento
 - Chain of Responsibility ✅
 - Visitor ✅
-- Interpreter
+- Interpreter ✅
 
 ---
 
