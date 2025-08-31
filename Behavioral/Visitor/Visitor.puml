@@ -1,0 +1,53 @@
+@startuml Visitor
+
+title Visitor Design Pattern - Hotel Rooms
+
+interface HotelRoomElement {
+    +accept(visitor: RoomVisitor)
+}
+
+interface RoomVisitor {
+    +visit(singleRoom: SingleRoom)
+    +visit(deluxeRoom: DeluxeRoom)
+    +visit(kingRoom: KingRoom)
+}
+
+class SingleRoom {
+    +roomPrice: int
+    +accept(visitor: RoomVisitor)
+}
+
+class DeluxeRoom {
+    +roomPrice: int
+    +accept(visitor: RoomVisitor)
+}
+
+class KingRoom {
+    +roomPrice: int
+    +accept(visitor: RoomVisitor)
+}
+
+class PriceReviewVisitor {
+    +visit(singleRoom: SingleRoom)
+    +visit(deluxeRoom: DeluxeRoom)
+    +visit(kingRoom: KingRoom)
+}
+
+class MaintainerVisitor {
+    +visit(singleRoom: SingleRoom)
+    +visit(deluxeRoom: DeluxeRoom)
+    +visit(kingRoom: KingRoom)
+}
+
+HotelRoomElement <|.. SingleRoom
+HotelRoomElement <|.. DeluxeRoom
+HotelRoomElement <|.. KingRoom
+
+RoomVisitor <|.. PriceReviewVisitor
+RoomVisitor <|.. MaintainerVisitor
+
+SingleRoom --> RoomVisitor : accept(visitor)
+DeluxeRoom --> RoomVisitor : accept(visitor)
+KingRoom --> RoomVisitor : accept(visitor)
+
+@enduml
